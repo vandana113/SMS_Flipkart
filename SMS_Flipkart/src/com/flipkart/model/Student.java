@@ -1,14 +1,42 @@
 package com.flipkart.model;
 
-import java.util.ArrayList;
+import java.util.UUID;
 
-public class Student extends User{
+public class Student extends User {
 
-	public Student(String name, String studentID, String email) {
+	public Student() {
+
+	}
+
+	public Student(String username, String password) {
+		this.setUserID(username);
+		this.setPassword(password);
+		this.isRegistered = false;
+	}
+
+	public Student(User user, String name, String gender, String major, String sem, boolean isRegistered,
+			int percentage) {
 		// TODO Auto-generated constructor stub
+		super(user.getUsername(), user.getPassword());
+		this.name = name;
+		this.studentID = user.getUserID();
+		this.gender = gender;
+		this.major = major;
+		this.sem = sem;
+		this.isRegistered = isRegistered;
+		this.percentage = percentage;
+	}
+
+	public Student(String studentID, String name, String gender, String major, String sem, boolean isRegistered,
+			int percentage) {
+		// TODO Auto-generated constructor stub
+
 		this.name = name;
 		this.studentID = studentID;
-		this.email = email;
+		this.gender = gender;
+		this.major = major;
+		this.isRegistered = isRegistered;
+		this.percentage = percentage;
 	}
 
 	public String getName() {
@@ -27,16 +55,28 @@ public class Student extends User{
 		this.studentID = studentID;
 	}
 
-	public int getMarks() {
-		return cumulative_marks;
+	private String name;
+	private String gender;
+	private String major;
+	private String sem;
+	private boolean isRegistered;
+	private int percentage;
+	private UUID registrationID;
+
+	public String getSem() {
+		return sem;
 	}
 
-	public void setMarks(int cumulative_marks) {
-		this.cumulative_marks = cumulative_marks;
+	public void setSem(String sem) {
+		this.sem = sem;
 	}
-	
-	public String getEmail() {
-		return email;
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getMajor() {
@@ -47,32 +87,30 @@ public class Student extends User{
 		this.major = major;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public boolean isRegistered() {
+		return isRegistered;
 	}
 
-	public String getDOB() {
-		return DOB;
+	public void setRegistered(boolean isRegistered) {
+		this.isRegistered = isRegistered;
 	}
 
-	public void setDOB(String dOB) {
-		DOB = dOB;
+	public int getPercentage() {
+		return percentage;
 	}
 
-	public int getCumulative_marks() {
-		return cumulative_marks;
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
 	}
 
-	public void setCumulative_marks(int cumulative_marks) {
-		this.cumulative_marks = cumulative_marks;
+	public UUID getRegistrationID() {
+		return registrationID;
 	}
 
-	private String name;
-	private String email;
-	private String DOB;
+	public void setRegistrationID(UUID registrationID) {
+		this.registrationID = registrationID;
+	}
 
 	private String studentID;
-	private String major;
-	private int cumulative_marks;
 
 }

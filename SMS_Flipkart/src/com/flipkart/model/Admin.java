@@ -1,20 +1,21 @@
 package com.flipkart.model;
 
-public class Admin extends User{
-	
+public class Admin extends User {
+
 	public Admin() {
 
 	}
 
-	public Admin(String name, int adminID) {
+	public Admin(String name, String adminID, String description) {
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.adminID = adminID;
+		this.description = description;
 	}
 
 	private String name;
-	private int adminID;
-	private String userPrivileges;
+	private String adminID;
+	private String description;
 
 	public String getName() {
 		return name;
@@ -24,20 +25,20 @@ public class Admin extends User{
 		this.name = name;
 	}
 
-	public int getAdminID() {
+	public String getAdminID() {
 		return adminID;
 	}
 
-	public void setAdminID(int adminID) {
+	public void setAdminID(String adminID) {
 		this.adminID = adminID;
 	}
 
-	public String getUserPrivileges() {
-		return userPrivileges;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setUserPrivileges(String userPrivileges) {
-		this.userPrivileges = userPrivileges;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

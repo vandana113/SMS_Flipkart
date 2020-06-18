@@ -1,18 +1,20 @@
 package com.flipkart.service;
 
-import com.flipkart.model.Account;
+import java.util.List;
+
 import com.flipkart.model.Course;
+import com.flipkart.model.Student;
+import com.flipkart.model.User;
 
 public interface AdminInterface {
-	public Course addCourse();
+	public void addUser(User user, String role);
 
-	public int removeCourse(Course course);
+	public void addCourse(Course course);
 
-	public void DeclareResult();
+	public void removeUser(String username);
 
-	public void manageAccount(Account acc);
-	// Add Professor, Student
+	public void removeCourse(String courseCode);
 
-	public void GenerateAdminCard();
+	public List<Student> getRegisteredStudents();
 
 }

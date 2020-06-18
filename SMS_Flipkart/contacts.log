@@ -5,3 +5,37 @@
 16:41:40,197 ERROR UserDaoImpl,main:17 - Login------ 
 16:43:28,767 ERROR UserDaoImpl,main:17 - Login------ 
 16:43:56,923 ERROR UserDaoImpl,main:17 - Login------ 
+08:42:40,410 ERROR UserDaoImpl,main:17 - Login------ 
+08:42:40,412  INFO UserDaoImpl,main:18 - Username: 
+09:44:04,850  INFO UserDaoImpl,main:17 - Login------ 
+09:44:04,852  INFO UserDaoImpl,main:18 - Username: 
+09:44:08,549  INFO UserDaoImpl,main:20 - Password: 
+09:44:12,318 DEBUG UserDaoImpl,main:27 - com.mysql.jdbc.JDBC42PreparedStatement@57855c9a: select password from user where username='vandana'
+09:44:12,323 ERROR UserDaoImpl,main:42 - Invalid  login: Username and Password does not match
+09:44:34,338  INFO UserDaoImpl,main:17 - Login------ 
+09:44:34,341  INFO UserDaoImpl,main:18 - Username: 
+09:44:38,421  INFO UserDaoImpl,main:20 - Password: 
+09:44:43,612 DEBUG UserDaoImpl,main:27 - com.mysql.jdbc.JDBC42PreparedStatement@57855c9a: select password from user where username='vandana'
+09:44:43,622 ERROR UserDaoImpl,main:42 - Invalid  login: Username and Password does not match
+09:46:54,995  INFO UserDaoImpl,main:17 - Login------ 
+09:46:54,997  INFO UserDaoImpl,main:18 - Username: 
+09:46:57,243  INFO UserDaoImpl,main:20 - Password: 
+09:47:01,451 DEBUG UserDaoImpl,main:27 - com.mysql.jdbc.JDBC42PreparedStatement@57855c9a: select * from user where username='vandana'
+09:47:01,455 ERROR UserDaoImpl,main:42 - Invalid  login: Username and Password does not match
+10:05:25,669  INFO UserDaoImpl,main:17 - Login------ 
+10:05:25,680  INFO UserDaoImpl,main:18 - Username: 
+10:07:18,317  INFO UserDaoImpl,main:17 - Login------ 
+10:07:18,319  INFO UserDaoImpl,main:18 - Username: 
+10:07:20,709  INFO UserDaoImpl,main:20 - Password: 
+10:07:24,634 DEBUG UserDaoImpl,main:27 - com.mysql.jdbc.JDBC42PreparedStatement@57855c9a: select * from user where username='vandana'
+10:07:24,688  INFO UserDaoImpl,main:30 - No of user found0
+10:07:24,689 ERROR UserDaoImpl,main:43 - Invalid  login: Username and Password does not match
+11:28:15,253  INFO UserDaoImpl,main:17 - Login------ 
+11:28:15,254  INFO UserDaoImpl,main:18 - Username: 
+11:32:11,359  INFO UserDaoImpl,main:20 - Password: 
+11:32:17,020 DEBUG UserDaoImpl,main:27 - com.mysql.jdbc.JDBC42PreparedStatement@57855c9a: select * from user where username='vandana'
+11:32:17,023  INFO UserDaoImpl,main:30 - No of user found0
+11:32:17,024  INFO UserOperation,main:23 - Login successful
+11:32:17,025  INFO UserOperation,main:25 - Getting role of user
+11:32:17,026 DEBUG UserDaoImpl,main:61 - com.mysql.jdbc.JDBC42PreparedStatement@72b6cbcc: select role from user where username='vandana'
+11:32:17,029 DEBUG UserDaoImpl,main:76 - Invalid  login: Username and Password does not match

@@ -1,0 +1,7 @@
+com.flipkart.client
+com.flipkart.dao
+com.flipkart.exception
+com.flipkart.model
+com.flipkart.service
+com.flipkart.utils
+com.sms.constant

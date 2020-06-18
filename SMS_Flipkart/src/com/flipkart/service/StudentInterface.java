@@ -1,21 +1,26 @@
 package com.flipkart.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.flipkart.model.Course;
 import com.flipkart.model.Student;
 
 public interface StudentInterface {
-	public ArrayList<Course> selectCourses(Student s);
 
-	public ArrayList<Course> selectAlternateCourses(Student s);
+	void addCourse(Student student, String courseCode);
 
-	public ArrayList<Course> viewEnrolledCourses(Student s);
+	public void removeCourse(Student student, String courseCode);
 
-	public ArrayList<Course> registerCourses(Student s);
+	public List<Course> enrolledCourses(Student student);
 
-	public boolean payFees(Student s);
+	public void registerCourses(Student student);
 
-	public void viewGrades(Student s);
+	void DisplayCourses(Student student);
+
+	public void makePayment(Student student, String mode, String modeNumber);
+
+	public void updateDetails(Student student);
+
+	public void ViewGrades(Student student);
 
 }

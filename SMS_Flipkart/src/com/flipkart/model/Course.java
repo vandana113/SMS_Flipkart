@@ -1,22 +1,33 @@
 package com.flipkart.model;
 
 public class Course {
-	int courseTitle;
+	public Course(String courseID, String courseTitle, String professor, int credit) {
+		this.courseTitle = courseTitle;
+		this.courseID = courseID;
+		this.professor = professor;
+		this.credit = credit;
+	}
 
-	public int getCourseTitle() {
+	public Course() {
+
+	}
+
+	String courseTitle;
+
+	public String getCourseTitle() {
 		return courseTitle;
 	}
 
-	public void setCourseTitle(int courseTitle) {
+	public void setCourseTitle(String courseTitle) {
 		this.courseTitle = courseTitle;
 	}
 
 	public String getCourseCode() {
-		return courseCode;
+		return courseID;
 	}
 
 	public void setCourseCode(String courseCode) {
-		this.courseCode = courseCode;
+		this.courseID = courseCode;
 	}
 
 	public String getProfessor() {
@@ -35,9 +46,35 @@ public class Course {
 		this.primary = primary;
 	}
 
-	String courseCode;
+	String courseID;
 	String professor;
 	boolean primary;
 	int credit;
+	private String catalogID;
+	private int strength;
+
+	public int getCredit() {
+		return credit;
+	}
+
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
+
+	public String getCatalogID() {
+		return catalogID;
+	}
+
+	public void setCatalogID(String catalogID) {
+		this.catalogID = catalogID;
+	}
+
+	public int getStrength() {
+		return strength;
+	}
+
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
 
 }

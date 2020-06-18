@@ -1,59 +1,47 @@
 package com.flipkart.model;
 
-import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
-public class Professor extends User{
+public class Professor extends User {
+	private static Logger logger = Logger.getLogger(Professor.class);
 
-	public Professor(String name, int profID, String dept, String job_title, String specialisation) {
+	public Professor(User user, String name, String title) {
 		// TODO Auto-generated constructor stub
+		super(user.getUsername(), user.getUsername());
 		this.name = name;
-		this.profID = profID;
-		this.dept = dept;
-		this.job_title = job_title;
-		this.specialisation = specialisation;
+		this.profID = user.getUserID();
+		this.title = title;
+	}
+
+	public Professor() {
+
 	}
 
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getProfID() {
+
+	public String getProfID() {
 		return profID;
 	}
-	public void setProfID(int profID) {
+
+	public void setProfID(String profID) {
 		this.profID = profID;
-	} 
-	public String getDept() {
-		return dept;
 	}
-	public void setDept(String dept) {
-		this.dept = dept;
+
+	public String getTitle() {
+		return title;
 	}
-	public String getJob_title() {
-		return job_title;
-	}
-	public void setJob_title(String job_title) {
-		this.job_title = job_title;
-	}
-	public String getSpecialisation() {
-		return specialisation;
-	}
-	public void setSpecialisation(String specialisation) {
-		this.specialisation = specialisation;
-	}
-	public ArrayList<String> getCourses() {
-		return courses;
-	}
-	public void setCourses(ArrayList<String> courses) {
-		this.courses = courses;
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	private String name;
-	private int profID;
-	private String dept;
-	private String job_title;
-	private String specialisation;
-	private ArrayList<String> courses;
+	private String profID;
+	private String title;
 }
