@@ -8,12 +8,27 @@ public class Student extends User {
 
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 */
 	public Student(String username, String password) {
 		this.setUserID(username);
 		this.setPassword(password);
 		this.isRegistered = false;
 	}
 
+	/**
+	 * 
+	 * @param user
+	 * @param name
+	 * @param gender
+	 * @param major
+	 * @param sem
+	 * @param isRegistered
+	 * @param percentage
+	 */
 	public Student(User user, String name, String gender, String major, String sem, boolean isRegistered,
 			int percentage) {
 		// TODO Auto-generated constructor stub

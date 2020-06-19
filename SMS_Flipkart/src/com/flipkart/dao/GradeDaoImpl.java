@@ -25,10 +25,12 @@ public class GradeDaoImpl implements GradeDao {
 
 		try {
 			stmt = conn.prepareStatement(SQLConstantQueries.ADD_GRADES);
+			//Adding parameter values
 			stmt.setString(1, courseID);
 			stmt.setString(2, studentID);
 			stmt.setString(4, professor.getProfID());
 			stmt.setString(3, grade);
+			//no of rows effected
 			int rows = stmt.executeUpdate();
 			logger.info(rows + " student grades added");
 			stmt.close();
@@ -43,6 +45,7 @@ public class GradeDaoImpl implements GradeDao {
 		PreparedStatement stmt = null;
 
 		try {
+			//Query to view grades using studentID
 			stmt = conn.prepareStatement(SQLConstantQueries.VIEW_GRADES);
 			stmt.setString(1, student.getStudentID());
 			ResultSet rs = stmt.executeQuery();

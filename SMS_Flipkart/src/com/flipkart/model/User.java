@@ -6,6 +6,11 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 */
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;

@@ -22,10 +22,12 @@ public class UserOperation implements UserInterface {
 	}
 
 	public Student getStudent(User user) {
+		//Student object
 		return UserDBOperation.getStudentDetails(user);
 	}
 
 	public Professor getProfessor(User user) {
+		//Professor object
 		return UserDBOperation.getProfessorDetails(user);
 
 	}

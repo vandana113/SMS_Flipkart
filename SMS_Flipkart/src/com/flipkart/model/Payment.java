@@ -1,7 +1,7 @@
 package com.flipkart.model;
 
 public class Payment {
-
+	
 	public Payment() {
 		// TODO Auto-generated constructor stub
 	}

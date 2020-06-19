@@ -5,6 +5,13 @@ import org.apache.log4j.Logger;
 public class Professor extends User {
 	private static Logger logger = Logger.getLogger(Professor.class);
 
+	/**
+	 * 
+	 * @param user
+	 * @param name
+	 * @param title
+	 */
+	// Intialising professor
 	public Professor(User user, String name, String title) {
 		// TODO Auto-generated constructor stub
 		super(user.getUsername(), user.getUsername());
@@ -40,7 +47,7 @@ public class Professor extends User {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	
 	private String name;
 	private String profID;
 	private String title;

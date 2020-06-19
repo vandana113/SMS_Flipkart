@@ -6,6 +6,7 @@ public class Admin extends User {
 
 	}
 
+	// Intialisation of admin
 	public Admin(String name, String adminID, String description) {
 		// TODO Auto-generated constructor stub
 		this.name = name;
@@ -15,6 +16,7 @@ public class Admin extends User {
 
 	private String name;
 	private String adminID;
+	// Describing admin privileges
 	private String description;
 
 	public String getName() {

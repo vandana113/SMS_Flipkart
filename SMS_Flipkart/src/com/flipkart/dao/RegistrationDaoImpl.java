@@ -41,7 +41,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
 			else if (percentage >= 90)
 				scholarship = 40;
 			logger.info("Fees: " + fees);
-			logger.info("Scholarship: " + scholarship+"%");
+			logger.info("Scholarship: " + scholarship + "%");
 			fees = fees + ((scholarship / 100) * fees);
 
 			stmt.setInt(3, fees);
@@ -70,7 +70,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
 		PreparedStatement stmt = null;
 		List<Student> registeredStudents = new ArrayList<Student>();
 		try {
-
+			// List of students already registered from registration table
 			stmt = conn.prepareStatement(SQLConstantQueries.GET_REGISTERED_STUDENTS);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {

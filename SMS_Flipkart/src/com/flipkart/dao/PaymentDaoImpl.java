@@ -18,6 +18,7 @@ public class PaymentDaoImpl implements PaymentDao {
 	private static Logger logger = Logger.getLogger(PaymentDaoImpl.class);
 
 	public void addPaymentDetails(Student student, String mode, String modeNumber) throws NotRegistered {
+		//Payment can only be done by registered user
 		if (!student.isRegistered())
 			throw new NotRegistered();
 		PreparedStatement stmt = null;
@@ -27,10 +28,12 @@ public class PaymentDaoImpl implements PaymentDao {
 			stmt.setString(1, mode);
 			stmt.setString(2, modeNumber);
 			stmt.setString(3, "Payment successful");
+			//Current Date
 			long millis = System.currentTimeMillis();
 			Date paymentDate = new Date(millis);
 			stmt.setDate(5, paymentDate);
-
+			
+			//Random number for registration
 			UUID transactionID = UUID.randomUUID();
 			stmt.setString(4, transactionID + "");
 			stmt.setString(6, student.getRegistrationID() + "");

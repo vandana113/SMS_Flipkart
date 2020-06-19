@@ -1,10 +1,19 @@
 package com.flipkart.model;
 
 public class Grade {
+	//Grade of students
 
 	public Grade() {
 		// TODO Auto-generated constructor stub
 	}
+
+	/**
+	 * 
+	 * @param studentID
+	 * @param courseID
+	 * @param courseName
+	 * @param grade
+	 */
 
 	public Grade(String studentID, String courseID, String courseName, int grade) {
 		this.studentID = studentID;
@@ -45,7 +54,6 @@ public class Grade {
 		this.grade = grade;
 	}
 
-	
 	public String getCourseName() {
 		return courseName;
 	}

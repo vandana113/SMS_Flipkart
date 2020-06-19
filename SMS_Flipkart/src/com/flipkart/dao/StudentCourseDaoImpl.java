@@ -15,19 +15,25 @@ import com.flipkart.utils.DBUtil;
 import com.sms.constant.SQLConstantQueries;
 
 public class StudentCourseDaoImpl implements StudentCourseDao {
+	// Creating connection
 	Connection conn = DBUtil.getConnection();
 	static int course = 0;
 	private static Logger logger = Logger.getLogger(StudentCourseDaoImpl.class);
 
+	// Adding course to student courses table
 	public void addCourse(Student student, String courseCode) {
-		if (student.isRegistered())
+
+		if (student.isRegistered()) {
 			logger.info("Already Registered");
+			return;
+		}
 		PreparedStatement stmt = null;
 		try {
-
+			// Add course based on courseCode
 			stmt = conn.prepareStatement(SQLConstantQueries.ADD_COURSE);
 			stmt.setString(1, student.getStudentID() + "");
 			stmt.setString(2, courseCode);
+			// No of rows effected
 			int rows = stmt.executeUpdate();
 			logger.info(rows + " Course Added");
 
@@ -37,13 +43,17 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 	}
 
 	public void removeCourse(Student student, String courseCode) {
-		if (student.isRegistered())
+		if (student.isRegistered()) {
 			logger.info("Already Registered");
+			return;
+		}
 		PreparedStatement stmt = null;
 		try {
+			// Remove course based on CourseCode
 			stmt = conn.prepareStatement(SQLConstantQueries.DELETE_COURSE);
 			stmt.setString(1, courseCode);
 			stmt.setString(2, student.getStudentID());
+			//No of rows effected
 			int rows = stmt.executeUpdate();
 			logger.info(rows + " Course Deleted");
 		} catch (Exception e) {
@@ -54,6 +64,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 
 	public List<Student> enrolledStudents(String courseCode) {
 		PreparedStatement stmt = null;
+		//Get enrolled courses
 		List<Student> enrolStudents = new ArrayList<Student>();
 		try {
 
@@ -77,6 +88,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 	public List<Course> enrolledCourses(Student student) throws NotRegistered {
 		if (!student.isRegistered())
 			throw new NotRegistered();
+		//List of enrolled courses from student courses table
 		PreparedStatement stmt = null;
 		List<Course> courses = new ArrayList<Course>();
 		try {
@@ -99,7 +111,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 		PreparedStatement stmt = null;
 		List<Course> courses = new ArrayList<Course>();
 		try {
-
+			// list of selectedcourses from student courses table
 			stmt = conn.prepareStatement(SQLConstantQueries.GET_ENROLLED_COURES_BY_STUDENT);
 			stmt.setString(1, student.getStudentID());
 			ResultSet rs = stmt.executeQuery();
@@ -118,7 +130,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 		PreparedStatement stmt = null;
 		List<Course> courses = new ArrayList<Course>();
 		try {
-
+			//list of invalid courses with strength>=10
 			stmt = conn.prepareStatement(SQLConstantQueries.GET_INVALID_SELECTEDCOURSES);
 			stmt.setString(1, student.getStudentID());
 			ResultSet rs = stmt.executeQuery();
@@ -136,6 +148,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 	public void DropOtherCourses(Student student, List<Course> invalidCourses) {
 		PreparedStatement stmt = null;
 		try {
+			//Drop invalid courses
 			for (Course course : invalidCourses) {
 				stmt = conn.prepareStatement(SQLConstantQueries.DROP_STUDENT_COURSES);
 				stmt.setString(1, course.getCourseCode());
@@ -151,7 +164,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement(SQLConstantQueries.UPDATE_STUDENT_DETAILS);
-
+			// update details in student table
 			stmt.setString(1, student.getGender());
 			stmt.setString(2, student.getMajor());
 			stmt.setString(3, student.getSem());

@@ -22,10 +22,11 @@ public class ProfessorCourseDaoImpl implements ProfessorCourseDao {
 
 		PreparedStatement stmt = null;
 		try {
-
+			// Query to add professor courses
 			stmt = conn.prepareStatement(SQLConstantQueries.ADD_COURSE_PROFESSOR);
 			stmt.setString(1, professor.getProfID());
 			stmt.setString(2, courseCode);
+			// No of rows effected
 			int rows = stmt.executeUpdate();
 			logger.info(rows + " Course Added");
 
@@ -37,9 +38,11 @@ public class ProfessorCourseDaoImpl implements ProfessorCourseDao {
 	public void removeCourse(Professor professor, String courseCode) {
 		PreparedStatement stmt = null;
 		try {
+			// Query to remove course from professor courses
 			stmt = conn.prepareStatement(SQLConstantQueries.DELETE_COURSE_PROFESSOR);
 			stmt.setString(1, courseCode);
 			stmt.setString(2, professor.getProfID());
+			// No of rows effected
 			int rows = stmt.executeUpdate();
 			logger.info(rows + " Course Deleted");
 		} catch (Exception e) {
@@ -52,11 +55,12 @@ public class ProfessorCourseDaoImpl implements ProfessorCourseDao {
 		PreparedStatement stmt = null;
 		List<Course> courses = new ArrayList<Course>();
 		try {
-
+			// Query to get courses taught from professor courses table
 			stmt = conn.prepareStatement(SQLConstantQueries.GET_COURSES_TAUGHT);
 			stmt.setString(1, professor.getProfID());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
+				// Retrieve by column name
 				courses.add(new Course(rs.getString("courseID"), rs.getString("courseName"), rs.getString("professor"),
 						Integer.parseInt(rs.getString("credit"))));
 			}
@@ -71,9 +75,11 @@ public class ProfessorCourseDaoImpl implements ProfessorCourseDao {
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement(SQLConstantQueries.UPDATE_PROFESSOR_DETAILS);
+			// Update title
 			stmt.setString(1, professor.getTitle());
+			// Using professorID
 			stmt.setString(2, professor.getProfID());
-
+			// No of rows effected
 			int rows = stmt.executeUpdate();
 			logger.info(rows + " Professor info updated");
 

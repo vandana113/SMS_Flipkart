@@ -1,6 +1,13 @@
 package com.flipkart.model;
 
 public class Course {
+	
+	/**
+	 * @param courseID
+	 * @param courseTitle
+	 * @param professor
+	 * @param credit
+	 */
 	public Course(String courseID, String courseTitle, String professor, int credit) {
 		this.courseTitle = courseTitle;
 		this.courseID = courseID;

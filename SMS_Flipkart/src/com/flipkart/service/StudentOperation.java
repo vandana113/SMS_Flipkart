@@ -22,6 +22,7 @@ import com.flipkart.model.Student;
 
 public class StudentOperation implements StudentInterface {
 
+	// Creating DBoperation object to perform operations in database
 	CourseDao courseDBOperation = new CourseDaoImpl();
 	StudentCourseDao studentCourseDBOperation = new StudentCourseDaoImpl();
 	RegistrationDao RegistrationDBOperation = new RegistrationDaoImpl();
@@ -32,28 +33,29 @@ public class StudentOperation implements StudentInterface {
 
 	@Override
 	public void DisplayCourses(Student student) {
-		// TODO Auto-generated method stub
+		// Getting list of courses from course table
 		logger.info("List of courses in " + student.getMajor() + " " + student.getSem() + " semester");
 		List<Course> courses = courseDBOperation.fetchCourseList(student);
-		courses.forEach(course -> logger.info("Name:" + course.getCourseTitle() + ", CourseID: " + course.getCourseCode()
-				+ ", Professor: " + course.getProfessor()));
+		courses.forEach(course -> logger.info("Name:" + course.getCourseTitle() + ", CourseID: "
+				+ course.getCourseCode() + ", Professor: " + course.getProfessor()));
 	}
 
 	@Override
 	public void addCourse(Student student, String courseCode) {
-		// TODO Auto-generated method stub
+		// Adding course to student courses table
 		studentCourseDBOperation.addCourse(student, courseCode);
 
 	}
 
 	@Override
 	public void removeCourse(Student student, String courseCode) {
-		// TODO Auto-generated method stub
+		// Removing course from student courses table
 		studentCourseDBOperation.removeCourse(student, courseCode);
 	}
 
 	@Override
 	public List<Course> enrolledCourses(Student student) {
+		// List of enrolledCourses after registration
 		List<Course> courses = null;
 		try {
 			courses = studentCourseDBOperation.enrolledCourses(student);
@@ -69,6 +71,8 @@ public class StudentOperation implements StudentInterface {
 	}
 
 	public void registerCourses(Student student) {
+
+		// If already registered
 		if (student.isRegistered()) {
 			logger.info("Already Registered...");
 			return;
@@ -76,11 +80,17 @@ public class StudentOperation implements StudentInterface {
 
 		List<Course> selectedCourses, invalidcourses;
 
+		// List of all selected courses
 		selectedCourses = studentCourseDBOperation.selectedCourses(student);
+
+		// List of invalid courses: courses with strength greater than 10
 		invalidcourses = studentCourseDBOperation.invalidCourses(student);
+
 		int no_of_courses = selectedCourses.size();
+
+		// Register Courses only if 4 courses are valid
 		if (no_of_courses == 4 && invalidcourses.size() == 0) {
-			logger.info("LIST OF COURSES TO BE REGISTERED-----------");
+			logger.info("LIST OF COURSES REGISTERED-----------");
 			selectedCourses.forEach(courses -> logger
 					.info("CourseName: " + courses.getCourseTitle() + ", CourseCode: " + courses.getCourseCode()));
 			student.setRegistered(true);
@@ -92,15 +102,18 @@ public class StudentOperation implements StudentInterface {
 			RegistrationDBOperation.registerStudents(registrationID, student);
 
 		} else {
+
 			logger.info("LIST OF COURSES SELECTED-----------");
 			selectedCourses.forEach(courses -> logger
 					.info("CourseName: " + courses.getCourseTitle() + ", CourseCode: " + courses.getCourseCode()));
 			if (invalidcourses.size() == 0) {
+				// 4 courses not selected
 				logger.info("You have selected " + no_of_courses
-						+ ". You need to select 4 courses.(To Add/Remove course Press 3/4 respectively.");
+						+ ". You need to select 4 courses.(To Add/Remove course Press 3/4 respectively)");
 
 			} else {
-				logger.info("Some courses got full. To add a new course Press 3");
+				// Add and Remove course due to invalidation of courses
+				logger.info("Some courses got full. To add a new/remove course Press 3/4 respectively)");
 				logger.info("Invalid Courses----");
 				invalidcourses.forEach(courses -> logger
 						.info("CourseName: " + courses.getCourseTitle() + ", CourseCode: " + courses.getCourseCode()));
@@ -115,6 +128,7 @@ public class StudentOperation implements StudentInterface {
 
 	public void makePayment(Student student, String mode, String modeNumber) {
 		try {
+			// Add payment details into payment table
 			PaymentDBOperation.addPaymentDetails(student, mode, modeNumber);
 		} catch (NotRegistered r) {
 			logger.info(r.getMessage());
@@ -123,10 +137,12 @@ public class StudentOperation implements StudentInterface {
 	}
 
 	public void updateDetails(Student student) {
+		// Update profile: gender, semester, gender
 		studentCourseDBOperation.updateStudentDetails(student);
 	}
 
 	public void ViewGrades(Student student) {
+		// View Result
 		List<Grade> grades = gradeDBOperation.ViewGrades(student);
 		grades.forEach(grade -> logger.info("CourseID: " + grade.getCourseID() + ", CourseName:" + grade.getCourseName()
 				+ ", Grade: " + grade.getGrade() + ", Pass: " + grade.isPass()));

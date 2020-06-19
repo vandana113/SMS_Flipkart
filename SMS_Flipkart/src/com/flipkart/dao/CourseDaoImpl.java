@@ -23,8 +23,8 @@ public class CourseDaoImpl implements CourseDao {
 		PreparedStatement stmt = null;
 		List<Course> courses = new ArrayList<Course>();
 		try {
-
 			stmt = conn.prepareStatement(SQLConstantQueries.GET_COURSES_LIST);
+			//getting list of courses based on major and semester of student
 			stmt.setString(1, student.getMajor());
 			stmt.setString(2, student.getSem());
 			ResultSet rs = stmt.executeQuery();
@@ -37,6 +37,7 @@ public class CourseDaoImpl implements CourseDao {
 				c.setProfessor(rs.getString("professor"));
 				c.setCredit(Integer.parseInt(rs.getString("credit")));
 				c.setCatalogID(rs.getString("catalogID"));
+				//adding to course to list
 				courses.add(c);
 			}
 		} catch (Exception e) {
@@ -47,16 +48,18 @@ public class CourseDaoImpl implements CourseDao {
 
 	public void updateCourseStrength(Student student, List<Course> selectedCourses) {
 		PreparedStatement stmt = null;
-
 		try {
 			for (Course course : selectedCourses) {
+				//Getting current strength of course
 				stmt = conn.prepareStatement(SQLConstantQueries.GET_STRENGTH);
 				stmt.setString(1, course.getCourseCode());
 				ResultSet rs = stmt.executeQuery();
 				int strength = 0;
+				//Retrieve by column name
 				while (rs.next()) {
 					strength = rs.getInt("strength");
 				}
+				//Updating strength off course by 1
 				stmt = conn.prepareStatement(SQLConstantQueries.UPDATE_COURSE);
 				stmt.setInt(1, strength + 1);
 				stmt.setString(2, course.getCourseCode());
@@ -73,6 +76,7 @@ public class CourseDaoImpl implements CourseDao {
 		PreparedStatement stmt = null;
 		List<Course> courses = new ArrayList<Course>();
 		try {
+			//Getting all courses in course table
 			stmt = conn.prepareStatement(SQLConstantQueries.GET_COURSES_CATALOG);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -93,7 +97,7 @@ public class CourseDaoImpl implements CourseDao {
 	public void addCourse(Course course) {
 		PreparedStatement stmt = null;
 		try {
-
+			//Add course to course table
 			stmt = conn.prepareStatement(SQLConstantQueries.ADD_COURSE_CATALOG);
 			stmt.setString(1, course.getCourseCode());
 			stmt.setString(2, "IT");

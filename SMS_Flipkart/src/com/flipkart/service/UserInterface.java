@@ -18,11 +18,12 @@ public interface UserInterface {
 	default public User login(String username, String password) {
 		User user = new User(username, password);
 		try {
-
+			// If login fails return null user
+			// else return user
 			if (!UserDBOperation.validateLogin(user))
 				return null;
 		} catch (LoginFailException e) {
-			// TODO Auto-generated catch block
+
 			System.out.println(e.getMessage());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -30,10 +31,13 @@ public interface UserInterface {
 		return user;
 	}
 
+	//Get student object
 	public Student getStudent(User user);
 
+	//Get professor object
 	public Professor getProfessor(User user);
 
+	//Logout
 	default public void logout(int role) {
 		// TODO Auto-generated method stub
 		LocalDateTime localDateTime = LocalDateTime.now();

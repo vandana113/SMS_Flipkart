@@ -17,7 +17,7 @@ import javax.xml.crypto.URIReferenceException;
 import org.apache.log4j.Logger;
 
 import com.flipkart.model.Course;
-import com.flipkart.model.Customer;
+
 import com.flipkart.model.Student;
 import com.flipkart.model.User;
 import com.flipkart.service.AdminInterface;
@@ -36,7 +36,7 @@ public class AdminController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Student> getRegisteredStudentDetails() {
 		System.out.println("Hello");
-		logger.info("Getting Student Details..");
+		logger.debug("Getting Student Details..");
 		List<Student> students = adminOperation.getRegisteredStudents();
 		return students;
 	}
@@ -46,6 +46,7 @@ public class AdminController {
 	@Consumes("application/json")
 	// @Produces(MediaType.APPLICATION_JSON)
 	public Response addUser(User user) {
+		logger.debug("UserID: " + user.getUserID() + " Role: " + user.getRole());
 		adminOperation.addUser(user, user.getRole());
 		return Response.status(200).entity("User " + user.getUserID() + " successfully added").build();
 	}
@@ -53,6 +54,7 @@ public class AdminController {
 	@DELETE
 	@Path("/deleteUser/{username}")
 	public Response deleteUser(@PathParam("username") String username) throws URIReferenceException {
+		logger.debug("User to be deleted +" + username);
 		adminOperation.removeUser(username);
 		return Response.status(200).entity("User: " + username + " successfully deleted").build();
 	}
@@ -62,13 +64,15 @@ public class AdminController {
 	@Consumes("application/json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addUser(Course course) {
+		logger.debug("CourseID: " + course.getCourseID() + " CourseName: " + course.getCourseTitle());
 		adminOperation.addCourse(course);
 		return Response.status(200).entity("Course " + course.getCourseTitle() + " successfully added").build();
 	}
 
 	@DELETE
 	@Path("/deleteCourse/{courseCode}")
-	public Response deleteCustomer(@PathParam("courseCode") String courseCode) throws URIReferenceException {
+	public Response deleteCourse(@PathParam("courseCode") String courseCode) throws URIReferenceException {
+		logger.debug("Course to be deleted +" + courseCode);
 		adminOperation.removeCourse(courseCode);
 		return Response.status(200).entity("Course " + courseCode + " successfully deleted").build();
 	}
@@ -78,8 +82,9 @@ public class AdminController {
 	@Consumes("application/json")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Course updateCourse(Course course) {
+		logger.debug("CourseID: " + course.getCourseID() + " CourseName: " + course.getCourseTitle());
 		adminOperation.updateCourse(course);
 		return course;
 	}
-	
+
 }
